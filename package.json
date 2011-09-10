@@ -1,0 +1,19 @@
+{ "name" : "banzai-redis"
+, "description" : "Redis queueing plugin module for Banzai"
+, "tags" : ["ETL", "pipeline", "document", "state machine", "redis", "queue", "banzai"]
+, "version" : "0.1.0"
+, "author" : "Pedro Teixeira <pedro.teixeira@gmail.com>"
+, "repository" :
+  { "type" : "git"
+  , "url" : "http://github.com/pgte/banzai-redis.git"
+  }
+, "bugs" :
+  { "web" : "http://github.com/pgte/banzai-redis/issues" }
+, "engines" : ["node >= 0.4.10"]
+, "main" : "./index"
+, "dependencies": {
+    "kue": "0.2.0"
+  , "redis": "0.6.0"
+}
+, "scripts": { "test": "make" }
+}
