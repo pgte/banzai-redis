@@ -15,5 +15,5 @@
     "kue": "0.2.0"
   , "redis": "0.6.0"
 }
-, "scripts": { "test": "make" }
+, "scripts": { "test": "expresso test.js" }
 }
