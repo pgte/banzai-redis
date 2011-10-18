@@ -1,7 +1,7 @@
 { "name" : "banzai-redis"
 , "description" : "Redis queueing plugin module for Banzai"
 , "tags" : ["ETL", "pipeline", "document", "state machine", "redis", "queue", "banzai"]
-, "version" : "0.3.3
+, "version" : "0.3.3"
 , "author" : "Pedro Teixeira <pedro.teixeira@gmail.com>"
 , "repository" :
   { "type" : "git"
