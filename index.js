@@ -117,25 +117,27 @@ module.exports = function(config) {
       var activeName = activeQueueName(type) ;
       client.brpoplpush(inactiveQueueName(type), activeName, config.popTimeout, function(err, jobId) {
         var jobDbId;
-        if (err) { return that.emit('error', err); }
+        if (err) { console.error('error performing brpoplpush', err); return that.emit('error', err); }
         
         if (! jobId) { return callback(null, null); }
         
         jobDbId = 'jobs:' + jobId;
 
         client.hget(jobDbId, 'job', function(err, jobStr) {
-          if (err) { return that.emit(err); }
+          if (err) { console.error('error on hget', err); return that.emit(err); }
 
           callback(JSON.parse(jobStr), function(cb) {
-            client
-              .multi()
-              .lrem(activeName, 1, jobId)
-              .hdel(jobDbId, 'job')
-              .hdel(jobDbId, 'created')
-              .exec(function(err) {
-                if (err) { return that.emit(err); }
-                cb();
-              });
+            client.lrem(activeName, 1, jobId, function(err) {
+              if (err) { console.error('error on lrem', err); return that.emit(err); }
+              client
+                .multi()
+                .hdel(jobDbId, 'job')
+                .hdel(jobDbId, 'created')
+                .exec(function(err) {
+                  if (err) { console.error('error on multi hdel', err); return that.emit(err); }
+                  cb();
+                });
+            });
           });
         });
       });
