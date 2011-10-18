@@ -149,6 +149,9 @@ module.exports = function(config) {
   function end(cb) {
     ending = true;
     if (cb) {
+      if (active === 0) {
+        return cb();
+      }
       that.on('done', function doneCB() {
         if (active === 0) {
           that.removeListener('done', doneCB);
