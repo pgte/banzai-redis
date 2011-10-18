@@ -20,11 +20,11 @@ module.exports = function(config) {
   }
 
   function inactiveQueueName(type) {
-    return 'q:jobs:' + encodeURIComponent(type) + ':inactive';
+    return 'bq:jobs:' + encodeURIComponent(type) + ':inactive';
   }
 
   function activeQueueName(type) {
-    return 'q:jobs:' + encodeURIComponent(type) + ':active';
+    return 'bq:jobs:' + encodeURIComponent(type) + ':active';
   }
   
   function push(type, job, done) {
