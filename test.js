@@ -1,8 +1,13 @@
-var queue  = require('./')()
+var queue  = require('./')({popTimeout:1})
   , assert = require('assert');
 
+queue.on('error', function(err) {
+  throw err;
+});
+
 setTimeout(function() {
-  process.exit();
+  queue.end(function() {
+  });
 }, 5000)
 
 exports.push_then_pop = function(done) {
