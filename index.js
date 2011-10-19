@@ -79,13 +79,14 @@ module.exports = function(config) {
     try {
       if (! connection) {
         client = createClient();
-        monitor = Monitor(createClient(), inactiveQueueName(type), activeQueueName(type), config.workerTimeout, config.monitorInterval);
-        monitor.on('error', function(err) {
-                         that.emit('err', err);
-                       });
-                       monitor.on('timeout', function(job) {
-                         that.emit('timeout', job);
-                       });
+        // FIXME: reenable monitoring
+        // monitor = Monitor(createClient(), inactiveQueueName(type), activeQueueName(type), config.workerTimeout, config.monitorInterval);
+        // monitor.on('error', function(err) {
+        //                  that.emit('err', err);
+        //                });
+        //                monitor.on('timeout', function(job) {
+        //                  that.emit('timeout', job);
+        //                });
         connections[type] = connection = {
             client: client
           , monitor: monitor
