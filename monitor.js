@@ -11,7 +11,7 @@ module.exports = exports = function(client, inactiveQueueName, activeQueueName, 
       client.llen(activeQueueName, function(err, len) {
         var i;
         if (err) { return that.emit(err); }
-        if (len === 0) { return monitor(); }
+        if (len === 0) { return; }
         for(i = 0; i < len; i++) {
           client.lindex(activeQueueName, i, function(err, jobId) {
             var jobIdStr;
